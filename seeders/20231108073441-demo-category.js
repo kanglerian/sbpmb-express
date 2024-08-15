@@ -9,10 +9,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
      },{
-      name: 'Kemampuan Kuantitatif',
-      createdAt: new Date(),
-      updatedAt: new Date()
-     },{
       name: 'English',
       createdAt: new Date(),
       updatedAt: new Date()

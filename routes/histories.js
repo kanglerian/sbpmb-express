@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Histories, Categories } = require('../models');
+const { Histories, Categories, Records } = require('../models');
 
 /* GET categories listing. */
 router.get('/', async (req, res) => {
@@ -72,13 +72,19 @@ router.delete('/:identityUser/:categoryId', async (req, res) => {
                 category_id: req.params.categoryId
             }
         });
-        if (history) {
+        const record = await Records.destroy({
+            where: {
+                identity_user: req.params.identityUser,
+                category_id: req.params.categoryId
+            }
+        });
+        if (history && record) {
             return res.json({
-                message: `Data riwayat berhasil dihapus.`
+                message: `Data riyawat pengisian berhasil dihapus.`
             });
         } else {
             return res.status(404).json({
-                message: `Data kategori tidak ditemukan.`
+                message: `Data tidak ditemukan.`
             });
         }
     } catch (error) {
